@@ -9,22 +9,22 @@ import java.net.Socket;
 public class serverMain {
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket=new ServerSocket(8888);
+            ServerSocket serverSocket = new ServerSocket(8888);
             System.out.println("启动远程服务监听...");
             //监听客户端发来消息
             while (true){
-                Socket socket=serverSocket.accept();
-                ObjectInputStream objectInputStream=new ObjectInputStream(socket.getInputStream());
+                Socket socket = serverSocket.accept();
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 //读取客户端传输协议包
-                String className=objectInputStream.readUTF();
-                String methodName=objectInputStream.readUTF();
-                Class<?>[] parameterTypes=(Class<?>[])objectInputStream.readObject();
-                Object[] arguments= (Object[]) objectInputStream.readObject();
+                String className = objectInputStream.readUTF();
+                String methodName = objectInputStream.readUTF();
+                Class<?>[] parameterTypes = (Class<?>[])objectInputStream.readObject();
+                Object[] arguments = (Object[]) objectInputStream.readObject();
 
-                Class clazz=null;
+                Class clazz = null;
                 //服务注册：API到具体实现的映射
                 if(className.equals(UserApi.class.getName())){
-                    clazz=UserService.class;
+                    clazz = UserService.class;
                 }
                 //传入方法名，方法参数类型获得方法对象
                 Method method = clazz.getMethod(methodName,parameterTypes);
