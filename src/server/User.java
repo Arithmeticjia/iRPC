@@ -30,7 +30,7 @@ public class User implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     @Override
     public String toString() {
         return "User{" +
