@@ -11,8 +11,10 @@ import java.lang.reflect.Proxy;
 import java.net.Socket;
 
 public class localMain {
-    //本地调用远程服务
-    public static void main(String args[]){
+    /**
+     * 本地调用远程服务
+     */
+    public static void main(String[] args){
         UserApi userApi = (UserApi) rpc(UserApi.class);
         User user = userApi.selectById(1);
         System.out.println("本地输出远程调用结果：\n"+user.toString());
