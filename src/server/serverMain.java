@@ -29,9 +29,9 @@ public class serverMain {
                 //传入方法名，方法参数类型获得方法对象
                 Method method = clazz.getMethod(methodName,parameterTypes);
                 //传入实现类对象，方法参数数组，方法对象执行获得返回结果对象
-                Object result=method.invoke(clazz.newInstance(),arguments);
+                Object result = method.invoke(clazz.newInstance(),arguments);
 
-                ObjectOutputStream objectOutputStream=new ObjectOutputStream(socket.getOutputStream());
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 objectOutputStream.writeObject(result);
                 objectOutputStream.flush();
 
