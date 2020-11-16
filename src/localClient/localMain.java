@@ -43,15 +43,15 @@ public class localMain {
                 Socket socket = new Socket("127.0.0.1",8888);
                 String className = clazz.getName();//api类名
                 String methodName=method.getName();//api 类成员方法名
-                Class<?>[] parameterTypes=method.getParameterTypes(); //类成员方法参数类型集合
+                Class<?>[] parameterTypes = method.getParameterTypes(); //类成员方法参数类型集合
 
-                ObjectOutputStream objectOutputStream=new ObjectOutputStream(socket.getOutputStream());
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 objectOutputStream.writeUTF(className);
                 objectOutputStream.writeUTF(methodName);
                 objectOutputStream.writeObject(parameterTypes);
                 objectOutputStream.writeObject(args);
 
-                ObjectInputStream objectInputStream=new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 Object o=objectInputStream.readObject();
                 objectInputStream.close();
                 objectOutputStream.close();
